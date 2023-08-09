@@ -1,9 +1,13 @@
 <script setup lang="ts">
+// 函数
 import { ref } from 'vue'
 import type { BannerItem, CategoryItem, HotItem } from '@/types/home'
 import { useGuessList } from '@/composables'
-
+// 组件
 import CustomNavbar from './components/CustomNavbar.vue'
+import PageSkeleton from './components/PageSkeleton.vue'
+import CategoryPanel from './components/CategoryPanel.vue'
+import HotPanel from './components/HotPanel.vue'
 
 import {
   getHomeBannerAPI,
@@ -57,9 +61,9 @@ const onRefresherrefresh = async () => {
   // 开始动画
   isTriggered.value = true
   // 加载数据
-  // await getHomeBannerData()
-  // await getHomeCategoryData()
-  // await getHomeHotData()
+  await getHomeBannerData()
+  await getHomeCategoryData()
+  await getHomeHotData()
   // 重置猜你喜欢组件数据
   guessRef.value?.resetData()
   await Promise.all([
@@ -86,6 +90,17 @@ const onRefresherrefresh = async () => {
     class="scroll-view"
     scroll-y
   >
+    <PageSkeleton v-if="isLoading" />
+    <template v-else>
+      <!-- 自定义轮播图 -->
+      <XtxSwiper :list="bannerList" />
+      <!-- 分类面板 -->
+      <CategoryPanel :list="categoryList" />
+      <!-- 热门推荐 -->
+      <HotPanel :list="hotList" />
+      <!-- 猜你喜欢 -->
+      <XtxGuess ref="guessRef" />
+    </template>
   </scroll-view>
 </template>
 
