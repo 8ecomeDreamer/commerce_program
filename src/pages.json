@@ -39,11 +39,18 @@
 			}
 		},
 		{
+			"path": "pages/goods/goods",
+			"style": {
+				"navigationBarTitleText": "商品详情"
+			}
+		},
+		{
 			"path": "pagesOrder/list/list",
 			"style": {
 				"navigationBarTitleText": "登录页"
 			}
 		}
+
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
