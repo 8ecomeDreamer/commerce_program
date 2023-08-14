@@ -259,7 +259,6 @@ const onRefresherrefresh = async () => {
       border-radius: 10rpx;
       overflow: hidden;
       position: relative;
-
       .image {
         width: 170rpx;
         height: 170rpx;

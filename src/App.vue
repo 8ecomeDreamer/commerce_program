@@ -12,6 +12,14 @@ onHide(() => {
 })
 </script>
 
+<script lang="ts">
+export default {
+  globalData: {
+    categoryActiveIndex: 0,
+  },
+}
+</script>
+
 <style lang="scss">
 // 字体图标
 @import '@/styles/fonts.scss';

@@ -3,8 +3,8 @@ import { getCategoryTopAPI } from '@/services/category'
 import { getHomeBannerAPI } from '@/services/home'
 import type { CategoryTopItem } from '@/types/category'
 import type { BannerItem } from '@/types/home'
-import { onLoad } from '@dcloudio/uni-app'
-import { computed, ref } from 'vue'
+import { onLoad, onShow } from '@dcloudio/uni-app'
+import { computed, ref, onUnmounted } from 'vue'
 import PageSkeleton from './components/PageSkeleton.vue'
 
 // 获取轮播图数据
@@ -28,6 +28,15 @@ const isFinish = ref(false)
 onLoad(async () => {
   await Promise.all([getBannerData(), getCategoryTopData()])
   isFinish.value = true
+})
+
+onShow(() => {
+  // console.log(getApp().globalData!.categoryActiveIndex)
+  activeIndex.value = getApp().globalData!.categoryActiveIndex
+})
+
+onUnmounted(() => {
+  getApp().globalData!.categoryActiveIndex = 0
 })
 
 // 提取当前二级分类数据

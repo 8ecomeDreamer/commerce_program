@@ -79,7 +79,7 @@ defineExpose({
   </view>
 </template>
 
-<style>
+<style lang="scss">
 :host {
   display: block;
 }
